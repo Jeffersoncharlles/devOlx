@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2016", //versão do javascript                               
+    "module": "commonjs", //
+    "typeRoots": [
+      "./src/@types"
+    ], //falar onde tem tipagem
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, //vai checar todos os types independente
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  }
+}
