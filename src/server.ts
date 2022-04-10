@@ -1,22 +1,19 @@
-import express, { json, Request, Response, urlencoded } from 'express';
+import express from 'express';
+import { connectDB } from './database';
 import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { routers } from './routers';
 
 dotenv.config();
+connectDB()
 
-const server = express();
+const app = express();
 
-server.use(json());
-server.use(cors());
-server.use(urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(routers)
 
-server.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-server.get('/ping', (req: Request, res: Response) => {
-    res.json({ pong: true })
-});
-
-server.listen(process.env.PORT, () => {
-    console.log(`⚡[start]:🚀 ${process.env.BASE}${process.env.PORT}`)
-})
+app.listen(process.env.PORT, () => console.log(`⚡[start]:🚀 ${process.env.BASE}${process.env.PORT}`))
