@@ -8,7 +8,7 @@ interface IPayload {
 
 
 const ensureAuthenticate = async (req: Request, res: Response, next: NextFunction) => {
-    const secret = process.env.SECRET_JWT as string
+    const secret = process.env.SECRET_JWT || '4f7443a30ae61227a21faa89ff167508'
     // Receber o token
     const authToken = req.headers.authorization
     if (!authToken) {

@@ -1,4 +1,5 @@
 import { hash } from "bcryptjs";
+import { sign } from "jsonwebtoken";
 import { State } from "../../models/State";
 import { User } from "../../models/User";
 
@@ -12,26 +13,48 @@ interface ICreateUser {
 class CreateUserService {
     async execute({ email, name, password, state }: ICreateUser) {
 
-        const UserExists = await User.findOne({
-            email
-        })
+        if (email && name && password && state) {
 
-        const RegionExists = await State.findById({ state })
+            const UserExists = await User.findOne({
+                email
+            })
 
-        if (UserExists) {
-            return { message: "Invalid! User Already exists!" }
+            const RegionExists = await State.findById(state)
+
+            if (UserExists) {
+                throw new Error("Invalid! User Already exists!")
+            }
+            if (!RegionExists) {
+                throw new Error("Invalid! Region not exists!")
+            }
+
+            const passwordHash = await hash(password, 8)
+            //gerar o token
+
+
+            const data = await User.create({
+                email, name, state, password: passwordHash
+            })
+
+            const token = sign({ name: data.name, email: data.email, },
+                process.env.SECRET_JWT || '4f7443a30ae61227a21faa89ff167508' as any, {
+                subject: data.id,
+                expiresIn: '7d'
+            })
+
+            const response = {
+                id: data.id,
+                name: data.name,
+                email: data.email,
+                state: data.state,
+                token
+            }
+
+            return response
+
+
         }
-        if (!RegionExists) {
-            return { message: "Invalid! Region not exists!" }
-        }
-
-        const passwordHash = await hash(password, 8)
-
-        const response = await User.create({
-            email, name, state, password: passwordHash
-        })
-
-        return response
+        throw new Error("Invalid!")
     }
 }
 

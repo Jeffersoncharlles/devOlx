@@ -25,7 +25,7 @@ routers.get('/states', listStatesController.handle)
 
 //---- ROTAS USER ---//
 routers.post('/user/signup', createUserController.handle)
-routers.post('/user/signin', signupValidate, ensureAuthenticate, authUserController.handle)
+routers.post('/user/session', signupValidate, ensureAuthenticate, authUserController.handle)
 
 
 

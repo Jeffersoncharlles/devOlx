@@ -1,12 +1,23 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
-const schema = new Schema(
+interface IUser {
+    name: String;
+    email: String;
+    password: String;
+    token: String;
+    stateId: String;
+    createdAt: Number;
+    updatedAt: Number;
+    state: Types.ObjectId;
+}
+
+
+const schema = new Schema<IUser>(
     {
         name: String,
         email: String,
         password: String,
         token: String,
-        stateId: String,
         createdAt: Number,
         updatedAt: Number,
         state: {
