@@ -4,17 +4,26 @@ const schema = new Schema(
     {
         name: String,
         title: String,
-        userId: String,
-        categoryId: String,
         price: Number,
         priceNegotiable: Boolean,
         description: String,
         views: Number,
         status: String,
         images: [Object],
-        stateId: String,
         createdAt: Number,
         updatedAt: Number,
+        state: {
+            type: Schema.Types.ObjectId,
+            ref: 'State'
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        category: {
+            type: Schema.Types.ObjectId,
+            ref: 'Category'
+        }
     }
 )
 

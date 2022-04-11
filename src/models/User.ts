@@ -9,6 +9,10 @@ const schema = new Schema(
         stateId: String,
         createdAt: Number,
         updatedAt: Number,
+        state: {
+            type: Schema.Types.ObjectId,
+            ref: 'State'
+        }
     }
 )
 

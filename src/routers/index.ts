@@ -2,10 +2,15 @@ import { Router } from "express";
 import multer from 'multer';
 import { ListStateController } from "../controllers/state/ListStateController";
 import { AuthUserController } from "../controllers/user/AuthUserController";
+import { CreateUserController } from "../controllers/user/CreateUserController";
+import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import uploadConfig from '../middlewares/upload'
+import { signupValidate } from "../middlewares/validators/validators";
+
 
 const listStatesController = new ListStateController();
 const authUserController = new AuthUserController();
+const createUserController = new CreateUserController()
 
 
 
@@ -17,7 +22,11 @@ routers.get('/', (req, res) => {
 })
 
 routers.get('/states', listStatesController.handle)
-routers.post('/user/signin', authUserController.handle)
+
+//---- ROTAS USER ---//
+routers.post('/user/signup', createUserController.handle)
+routers.post('/user/signin', signupValidate, ensureAuthenticate, authUserController.handle)
+
 
 
 export { routers }
