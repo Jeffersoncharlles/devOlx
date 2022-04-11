@@ -1,6 +1,12 @@
 import { model, Schema } from "mongoose";
 
-const schema = new Schema(
+interface IState {
+    name: String;
+    createdAt: Number;
+    updatedAt: Number;
+}
+
+const schema = new Schema<IState>(
     {
         name: String,
         createdAt: Number,

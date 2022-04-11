@@ -1,6 +1,14 @@
 import { model, Schema } from "mongoose";
 
-const schema = new Schema(
+interface ICategory {
+    name: String;
+    slug: String;
+    createdAt: Number;
+    updatedAt: Number;
+}
+
+
+const schema = new Schema<ICategory>(
     {
         name: String,
         slug: String,

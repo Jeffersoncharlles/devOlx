@@ -1,6 +1,23 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 
-const schema = new Schema(
+interface IAd {
+    name: String;
+    title: String;
+    price: Number;
+    priceNegotiable: Boolean;
+    description: String;
+    views: Number;
+    status: String;
+    images: { url: string, status: boolean }[];
+    createdAt: Number;
+    updatedAt: Number;
+    state: Types.ObjectId;
+    user: Types.ObjectId;
+    category: Types.ObjectId;
+}
+
+
+const schema = new Schema<IAd>(
     {
         name: String,
         title: String,
