@@ -14,8 +14,19 @@ const schema = new Schema<ICategory>(
         slug: String,
         createdAt: Number,
         updatedAt: Number,
+    },
+    {
+        toJSON: {
+            virtuals: true
+        }
     }
 )
+
+schema.virtual('img').get(function (this: {
+    slug: string;
+}) {
+    return `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/assets/images/${this.slug}.png`;
+})
 
 const Category = model('Category', schema)
 

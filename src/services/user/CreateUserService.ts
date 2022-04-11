@@ -2,6 +2,7 @@ import { hash } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { State } from "../../models/State";
 import { User } from "../../models/User";
+import { Types } from "mongoose";
 
 interface ICreateUser {
     email: string;
@@ -18,13 +19,16 @@ class CreateUserService {
             const UserExists = await User.findOne({
                 email
             })
-
-            const RegionExists = await State.findById(state)
-
             if (UserExists) {
                 throw new Error("Invalid! User Already exists!")
             }
-            if (!RegionExists) {
+
+            try {
+                const RegionExists = await State.findById(state)
+                if (!RegionExists || !RegionExists.$isValid(state)) {
+                    throw new Error("Invalid! Region not exists!")
+                }
+            } catch (error) {
                 throw new Error("Invalid! Region not exists!")
             }
 
@@ -33,7 +37,7 @@ class CreateUserService {
 
 
             const data = await User.create({
-                email, name, state, password: passwordHash
+                email, name, stateId: state, password: passwordHash
             })
 
             const token = sign({ name: data.name, email: data.email, },
@@ -46,7 +50,7 @@ class CreateUserService {
                 id: data.id,
                 name: data.name,
                 email: data.email,
-                state: data.state,
+                state: data.stateId,
                 token
             }
 

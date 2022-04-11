@@ -4,11 +4,9 @@ interface IUser {
     name: String;
     email: String;
     password: String;
-    token: String;
-    stateId: String;
     createdAt: Number;
     updatedAt: Number;
-    state: Types.ObjectId;
+    stateId: Types.ObjectId;
 }
 
 
@@ -17,10 +15,9 @@ const schema = new Schema<IUser>(
         name: String,
         email: String,
         password: String,
-        token: String,
         createdAt: Number,
         updatedAt: Number,
-        state: {
+        stateId: {
             type: Schema.Types.ObjectId,
             ref: 'State'
         }

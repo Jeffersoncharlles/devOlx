@@ -11,9 +11,9 @@ interface IAd {
     images: { url: string, status: boolean }[];
     createdAt: Number;
     updatedAt: Number;
-    state: Types.ObjectId;
-    user: Types.ObjectId;
-    category: Types.ObjectId;
+    stateId: Types.ObjectId;
+    userId: Types.ObjectId;
+    categoryId: Types.ObjectId;
 }
 
 
@@ -29,15 +29,15 @@ const schema = new Schema<IAd>(
         images: [Object],
         createdAt: Number,
         updatedAt: Number,
-        state: {
+        stateId: {
             type: Schema.Types.ObjectId,
             ref: 'State'
         },
-        user: {
+        userId: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        category: {
+        categoryId: {
             type: Schema.Types.ObjectId,
             ref: 'Category'
         }
