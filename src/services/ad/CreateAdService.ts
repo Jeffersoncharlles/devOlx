@@ -49,6 +49,7 @@ class CreateAdService {
         }
 
         const response = await Ad.create({
+            title,
             status: true,
             categoryId,
             userId,
