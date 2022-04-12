@@ -27,8 +27,6 @@ const schema = new Schema<IAd>(
         views: Number,
         status: String,
         images: [Object],
-        createdAt: Number,
-        updatedAt: Number,
         stateId: {
             type: Schema.Types.ObjectId,
             ref: 'State'
@@ -40,7 +38,9 @@ const schema = new Schema<IAd>(
         categoryId: {
             type: Schema.Types.ObjectId,
             ref: 'Category'
-        }
+        },
+        createdAt: Number,
+        updatedAt: Number,
     }
 )
 

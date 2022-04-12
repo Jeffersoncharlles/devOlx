@@ -1,5 +1,6 @@
 import { Router } from "express";
 import multer from 'multer';
+import { CreateAdController } from "../controllers/ad/CreateAdController";
 import { ListCategoryController } from "../controllers/category/ListCategoryController";
 import { ListStateController } from "../controllers/state/ListStateController";
 import { AuthUserController } from "../controllers/user/AuthUserController";
@@ -17,6 +18,7 @@ const createUserController = new CreateUserController()
 const profileUserInfoController = new ProfileUserInfoController()
 const profileUpdateUserController = new ProfileUpdateUserController()
 const listCategoryController = new ListCategoryController()
+const createAdController = new CreateAdController()
 
 
 
@@ -37,6 +39,9 @@ routers.put('/user/me', ensureAuthenticate, profileUpdateUserController.handle)
 
 //---- ROTAS CATEGORY ---//
 routers.get('/categories', listCategoryController.handle)
+
+//---- ROTAS AD ---//
+routers.post('/ad/add', upload.array('img', 8), ensureAuthenticate, createAdController.handle)
 
 
 export { routers }
