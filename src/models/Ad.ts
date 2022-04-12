@@ -41,8 +41,23 @@ const schema = new Schema<IAd>(
         },
         createdAt: Number,
         updatedAt: Number,
+    }, {
+    toJSON: {
+        virtuals: true
     }
+}
 )
+schema.virtual('imagesUrl').get(function (this: {
+    images: [{
+        url: string;
+    }]
+}) {
+    return this.images.map((item) => {
+        return `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/${item.url}`;
+    })
+
+})
+
 
 const Ad = model('Ad', schema)
 

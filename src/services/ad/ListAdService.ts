@@ -62,21 +62,21 @@ class ListAdService {
             .limit(parseInt(String(limit)))
             .exec()
         const adsFormatted: IResponse[] = data.map((item) => {
-            let defaultImg = ''
 
-            const img = item.images.find(e => e.status)
-            if (img) {
-                defaultImg = `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/${img.url}`
-            } else {
-                defaultImg = `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/default.jpg`
-            }
+            // let defaultImg = ''
+            // const img = item.images.find(e => e.status === true)
+            // if (img) {
+            //     defaultImg = `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/${img.url}`
+            // } else {
+            //     defaultImg = `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/default.jpg`
+            // }
 
             return Object.assign({
                 id: item._id,
                 title: item.title,
                 price: item.price,
                 priceNegotiable: item.priceNegotiable,
-                image: defaultImg
+                image: item.images[0].status ? `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/default.jpg` : `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/${item.images[0].url}`
             })
         })
 
