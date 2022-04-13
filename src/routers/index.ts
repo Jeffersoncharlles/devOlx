@@ -50,7 +50,7 @@ routers.get('/categories', listCategoryController.handle)
 routers.post('/ad/add', upload.array('img', 8), ensureAuthenticate, createAdController.handle)
 routers.get('/ad', listAdController.handle)
 routers.get('/ad/:productId', oneListAdController.handle)
-routers.post('/ad/:productId', ensureAuthenticate, updateAdController.handle)
+routers.put('/ad/:productId', upload.array('img', 8), ensureAuthenticate, updateAdController.handle)
 
 
 export { routers }
