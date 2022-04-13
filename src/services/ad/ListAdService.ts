@@ -76,7 +76,7 @@ class ListAdService {
                 title: item.title,
                 price: item.price,
                 priceNegotiable: item.priceNegotiable,
-                image: item.images[0].status ? `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/default.jpg` : `${process.env.BASE ?? 'http://localhost:'}${process.env.PORT ?? '2052'}/public/${item.images[0].url}`
+                image: item.images[0].status ? `${process.env.BASE ?? 'http://localhost:'}/public/default.jpg` : `${process.env.BASE ?? 'http://localhost:'}/public/${item.images[0].url}`
             })
         })
 
