@@ -23,15 +23,14 @@ This back-end project was developed using the following technologies:
 
 - [Typescript][typescript]
 - [Node.js][nodejs]
+- [Express][express]
+- [Mongoose][mongoose]
+- [JWT][jsonwebtoken]
+- [Multer][multer]
 
-
-
-## 📚: Documentation:
-
-All API endpoints have been documented using Swagger. To view just access the URL below or click on this [link](https://localhost/api-docs/). <br>
-_Remember to start the server first_
-
-Local: _http://localhost:3333/api-docs_ <br>
+## PREVIEW
+Link Api online: _https://olxpai.herokuapp.com/_  
+<br>
 
 ## 📌 Project requirements:
 
@@ -52,6 +51,9 @@ Feel free to bring new features or fix problems, it will be a pleasure! 💜
 [typescript]: https://www.typescriptlang.org/
 [nodejs]: https://nodejs.org/en/
 [prisma]: https://www.prisma.io/
+[multer]: https://github.com/expressjs/multer#readme
+[mongoose]: https://mongoosejs.com/
+[jsonwebtoken]: https://www.npmjs.com/package/jsonwebtoken
 [express]: https://expressjs.com/pt-br/
 [postgresql]: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 [multer]: https://github.com/expressjs/multer
