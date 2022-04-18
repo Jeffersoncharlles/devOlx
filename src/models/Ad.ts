@@ -53,7 +53,10 @@ schema.virtual('imagesUrl').get(function (this: {
     }]
 }) {
     return this.images.map((item) => {
-        return `${process.env.BASE ?? 'http://localhost:'}/public/${item.url}`;
+        const data = {
+            original: `${process.env.BASE ?? 'http://localhost:'}/public/${item.url}`, thumbnail: `${process.env.BASE ?? 'http://localhost:'}/public/${item.url}`
+        }
+        return data;
     })
 
 })
