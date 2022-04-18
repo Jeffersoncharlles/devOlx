@@ -30,8 +30,8 @@ interface IResponse {
 
 class OneListAdService {
     async execute({ productId, other }: IOneList) {
-        if (!productId) {
-            throw new Error("invalid!not found product")
+        if (productId.length < 24) {
+            throw new Error("invalid! ID")
         }
         try {
             const data = await Ad.findOne({ _id: productId })
@@ -48,7 +48,7 @@ class OneListAdService {
             let otherDatas
             if (other) {
                 let otherData = await Ad.find({ status: true, userId: data.userId }).exec()
-                otherDatas = otherData.map((item) => {
+                otherDatas = otherData.map((item, index) => {
                     if (String(item._id) !== String(data._id)) {
                         const response = Object.assign({
                             id: item._id,
