@@ -29,7 +29,7 @@ This back-end project was developed using the following technologies:
 - [Multer][multer]
 
 ## PREVIEW
-Link Api online: _https://olxpai.herokuapp.com/_  
+Link Api online: _https://buynowapiolx.herokuapp.com_  
 <br>
 
 ## 📌 Project requirements:
